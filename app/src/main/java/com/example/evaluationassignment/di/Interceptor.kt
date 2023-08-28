@@ -21,12 +21,13 @@ class Interceptor @Inject constructor() : ApolloInterceptor {
 
     private fun <D : Operation.Data> buildRequestWithToken(
         request: ApolloRequest<D>,
-        tokenType: String = "Bearer"
+        tokenType: String = "Bearer",
+        token: String = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlSWQiOjE1ODIsImZJZCI6IkN6UGRtc3lYelpiYmRqR0wiLCJzSWQiOjYzLCJpYXQiOjE2OTE5OTE0NTMsImV4cCI6MTY5MzIwMTA1M30.ghmG_ay64DkPmCUDUS-u_jiVRrAUEtEpF3UaFIpVFN8"
     ): ApolloRequest<D> {
 
         return request.newBuilder().addHttpHeader(
             "Authorization",
-            "$tokenType eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlSWQiOjE1ODIsImZJZCI6IkN6UGRtc3lYelpiYmRqR0wiLCJzSWQiOjYzLCJpYXQiOjE2OTE5OTE0NTMsImV4cCI6MTY5MzIwMTA1M30.ghmG_ay64DkPmCUDUS-u_jiVRrAUEtEpF3UaFIpVFN8"
+            "$tokenType $token"
         ).build()
     }
 
